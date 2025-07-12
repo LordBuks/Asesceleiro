@@ -9,8 +9,13 @@ import {
   where, 
   orderBy 
 } from 'firebase/firestore';
-import { db } from '../firebase';
-import { cloudinaryService } from './cloudinaryService';
+import { 
+  ref, 
+  uploadBytes, 
+  getDownloadURL, 
+  deleteObject 
+} from 'firebase/storage';
+import { db, storage } from '../firebase';
 
 // Coleção de jogadores
 const PLAYERS_COLLECTION = 'players';
@@ -92,27 +97,19 @@ export const playersService = {
   }
 };
 
-// Operações para upload de imagens usando Cloudinary
+// Operações para upload de imagens
 export const storageService = {
   // Upload de foto do jogador
   async uploadPlayerPhoto(file, playerId) {
     try {
-      // Validar arquivo antes do upload
-      const validationErrors = cloudinaryService.validateFile(file);
-      if (validationErrors.length > 0) {
-        throw new Error(validationErrors.join(', '));
-      }
-
-      // Fazer upload para o Cloudinary
-      const result = await cloudinaryService.uploadImage(file, 'players');
+      const fileExtension = file.name.split('.').pop();
+      const fileName = `players/${playerId}.${fileExtension}`;
+      const storageRef = ref(storage, fileName);
       
-      return {
-        url: result.url,
-        publicId: result.publicId,
-        width: result.width,
-        height: result.height,
-        format: result.format
-      };
+      const snapshot = await uploadBytes(storageRef, file);
+      const downloadURL = await getDownloadURL(snapshot.ref);
+      
+      return downloadURL;
     } catch (error) {
       console.error('Erro ao fazer upload da foto:', error);
       throw error;
@@ -120,26 +117,16 @@ export const storageService = {
   },
 
   // Deletar foto do jogador
-  async deletePlayerPhoto(photoData) {
+  async deletePlayerPhoto(photoUrl) {
     try {
-      if (photoData && photoData.publicId) {
-        await cloudinaryService.deleteImage(photoData.publicId);
+      if (photoUrl && photoUrl.includes('firebase')) {
+        const photoRef = ref(storage, photoUrl);
+        await deleteObject(photoRef);
       }
     } catch (error) {
       console.error('Erro ao deletar foto:', error);
       // Não propagar o erro, pois a foto pode já ter sido deletada
     }
-  },
-
-  // Gerar URL otimizada para thumbnail
-  generateThumbnailUrl(publicId, width = 150, height = 200) {
-    return cloudinaryService.generateOptimizedUrl(publicId, {
-      width,
-      height,
-      crop: 'fill',
-      quality: 'auto',
-      format: 'auto'
-    });
   }
 };
 
@@ -164,11 +151,6 @@ export const utils = {
     return errors;
   },
 
-  // Validar arquivo de imagem
-  validateImageFile(file) {
-    return cloudinaryService.validateFile(file);
-  },
-
   // Formatar data para exibição
   formatDate(dateString) {
     if (!dateString) return 'Não informado';
@@ -178,14 +160,6 @@ export const utils = {
   // Gerar ID único para upload
   generateUploadId() {
     return Date.now().toString() + Math.random().toString(36).substr(2, 9);
-  },
-
-  // Gerar URL otimizada para exibição
-  getOptimizedImageUrl(photoData, options = {}) {
-    if (!photoData || !photoData.publicId) {
-      return null;
-    }
-    return cloudinaryService.generateOptimizedUrl(photoData.publicId, options);
   }
 };
 
