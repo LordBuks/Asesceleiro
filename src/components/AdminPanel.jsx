@@ -48,8 +48,8 @@ const AdminPanel = ({ onBackToPublic }) => {
 
     try {
       // Deletar foto se existir
-      if (player.photoUrl) {
-        await storageService.deletePlayerPhoto(player.photoUrl);
+      if (player.photoData) {
+        await storageService.deletePlayerPhoto(player.photoData);
       }
       
       // Deletar jogador
@@ -65,17 +65,17 @@ const AdminPanel = ({ onBackToPublic }) => {
 
   const handleFormSubmit = async (playerData, photoFile) => {
     try {
-      let photoUrl = editingPlayer?.photoUrl || '';
+      let photoData = editingPlayer?.photoData || null;
 
       // Upload da nova foto se fornecida
       if (photoFile) {
-        const uploadId = editingPlayer?.id || utils.generateUploadId();
-        photoUrl = await storageService.uploadPlayerPhoto(photoFile, uploadId);
+        photoData = await storageService.uploadPlayerPhoto(photoFile, utils.generateUploadId());
       }
 
       const playerWithPhoto = {
         ...playerData,
-        photoUrl
+        photoData,
+        photoUrl: photoData ? photoData.url : null // Manter compatibilidade
       };
 
       if (editingPlayer) {
@@ -187,9 +187,9 @@ const AdminPanel = ({ onBackToPublic }) => {
                   <div key={player.id} className="bg-gray-50 rounded-lg p-4">
                     <div className="flex items-start space-x-4">
                       <div className="w-16 h-20 bg-gray-200 rounded overflow-hidden flex-shrink-0">
-                        {player.photoUrl ? (
+                        {player.photoUrl || player.photoData?.url ? (
                           <img 
-                            src={player.photoUrl} 
+                            src={player.photoData?.url || player.photoUrl} 
                             alt={player.name}
                             className="w-full h-full object-cover"
                           />

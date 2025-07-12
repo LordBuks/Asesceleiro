@@ -24,11 +24,17 @@ const PlayerModal = ({ player, isOpen, onClose }) => {
         <div className="p-6">
           <div className="flex flex-col md:flex-row gap-6">
             <div className="md:w-1/3">
-              <img 
-                src={player.photoUrl} 
-                alt={player.name}
-                className="w-full aspect-[3/4] object-cover rounded-lg"
-              />
+              {player.photoData?.url || player.photoUrl ? (
+                <img 
+                  src={player.photoData?.url || player.photoUrl} 
+                  alt={player.name}
+                  className="w-full aspect-[3/4] object-cover rounded-lg"
+                />
+              ) : (
+                <div className="w-full aspect-[3/4] bg-gray-200 rounded-lg flex items-center justify-center">
+                  <span className="text-gray-400">Sem foto</span>
+                </div>
+              )}
             </div>
             
             <div className="md:w-2/3 space-y-4">

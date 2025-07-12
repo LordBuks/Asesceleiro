@@ -1,19 +1,45 @@
 const PlayerCard = ({ player, onClick }) => {
+  const imageUrl = player.photoData?.url || player.photoUrl;
+  
   return (
     <div 
-      className="bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-xl"
+      className="group relative bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer player-card-hover"
       onClick={() => onClick(player)}
     >
-      <div className="aspect-[3/4] overflow-hidden">
-        <img 
-          src={player.photoUrl} 
-          alt={player.name}
-          className="w-full h-full object-cover"
-        />
+      {/* Imagem do jogador */}
+      <div className="relative aspect-[3/4] overflow-hidden">
+        {imageUrl ? (
+          <img 
+            src={imageUrl} 
+            alt={player.name}
+            className="w-full h-full object-cover player-image-zoom group-hover:scale-110"
+          />
+        ) : (
+          <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+            <span className="text-gray-400 text-sm">Sem foto</span>
+          </div>
+        )}
+        
+        {/* Overlay com degradê vermelho no hover */}
+        <div className="absolute inset-0 player-overlay-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        
+        {/* Informações sobrepostas na imagem */}
+        <div className="absolute bottom-0 left-0 right-0 p-4 text-white player-info-slide transform translate-y-full group-hover:translate-y-0">
+          <h3 className="text-xl font-bold mb-1 text-shadow-strong">{player.name}</h3>
+          <p className="text-sm opacity-90 text-shadow-strong">{player.position || 'Posição não informada'}</p>
+          <p className="text-xs opacity-80 text-shadow-strong">{player.category}</p>
+        </div>
       </div>
-      <div className="p-4">
-        <h3 className="text-lg font-bold text-gray-900 mb-1">{player.name}</h3>
-        <p className="text-sm text-gray-600">{player.position}</p>
+      
+      {/* Informações sempre visíveis (estilo Internacional) */}
+      <div className="p-4 bg-white">
+        <h3 className="text-lg font-bold text-gray-900 mb-1 truncate">{player.name}</h3>
+        <div className="flex justify-between items-center text-sm text-gray-600">
+          <span>{player.position || 'Posição não informada'}</span>
+          <span className="category-badge text-white px-2 py-1 rounded-full text-xs font-medium">
+            {player.category}
+          </span>
+        </div>
       </div>
     </div>
   );
