@@ -205,7 +205,7 @@ const PlayerModal = ({ player, isOpen, onClose }) => {
               </div>
             </div>
 
-            {/* Contato dos Responsáveis para Emergência */}
+            {/* Contato para Emergência */}
             <div className="bg-green-50 p-4 rounded-lg border border-green-200">
               <h4 className="text-lg font-semibold text-green-800 mb-3">
                 Contato dos Responsáveis para Emergência
