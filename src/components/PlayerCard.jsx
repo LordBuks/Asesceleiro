@@ -8,23 +8,23 @@ const PlayerCard = ({ player, onClick }) => {
     >
       {/* Imagem do jogador */}
       <div className="relative aspect-[3/4] overflow-hidden">
+        {/* Overlay com degradê vermelho no hover - ATRÁS da imagem */}
+        <div className="absolute inset-0 player-overlay-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
+        
         {imageUrl ? (
           <img 
             src={imageUrl} 
             alt={player.name}
-            className="w-full h-full object-cover player-image-zoom group-hover:scale-110"
+            className="w-full h-full object-cover player-image-zoom group-hover:scale-110 relative z-20"
           />
         ) : (
-          <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+          <div className="w-full h-full bg-gray-200 flex items-center justify-center relative z-20">
             <span className="text-gray-400 text-sm">Sem foto</span>
           </div>
         )}
         
-        {/* Overlay com degradê vermelho no hover */}
-        <div className="absolute inset-0 player-overlay-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-        
-        {/* Informações sobrepostas na imagem */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 text-white player-info-slide transform translate-y-full group-hover:translate-y-0">
+        {/* Informações sobrepostas na imagem - ACIMA de tudo */}
+        <div className="absolute bottom-0 left-0 right-0 p-4 text-white player-info-slide transform translate-y-full group-hover:translate-y-0 z-30">
           <h3 className="text-xl font-bold mb-1 text-shadow-strong">{player.name}</h3>
           <p className="text-sm opacity-90 text-shadow-strong">{player.position || 'Posição não informada'}</p>
           <p className="text-xs opacity-80 text-shadow-strong">{player.category}</p>
