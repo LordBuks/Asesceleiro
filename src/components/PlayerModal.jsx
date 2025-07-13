@@ -17,8 +17,8 @@ const PlayerModal = ({ player, isOpen, onClose }) => {
         <div className="p-0">
           <h2 className="text-2xl font-bold text-gray-900 mb-6 p-6 pb-0">Detalhes do Jogador</h2>
           
-          {/* Seção de destaque com foto e nome estilizado */}
-          <div className="relative h-96 overflow-hidden chelsea-hero-section">
+          {/* Seção de destaque com foto e nome estilizado - Responsiva */}
+          <div className="relative h-auto md:h-96 overflow-hidden chelsea-hero-section">
             {/* Degradê vermelho suave para branco */}
             <div className="absolute inset-0 bg-gradient-to-r from-[#E5050F] via-[#E5050F] to-white"></div>
             
@@ -41,36 +41,42 @@ const PlayerModal = ({ player, isOpen, onClose }) => {
               ))}
             </div>
             
-            {/* Primeiro nome CENTRALIZADO horizontal e verticalmente */}
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 w-full text-center">
-              <p className="text-white text-4xl md:text-5xl font-bold tracking-wider"
-                 style={{ 
-                   opacity: 0.9,
-                   textShadow: '2px 2px 6px rgba(0,0,0,0.7)',
-                   letterSpacing: '0.05em'
-                 }}>
-                {player.name.split(' ')[0].toUpperCase()}
-              </p>
-            </div>
-            
-            {/* Foto do jogador - Lado esquerdo, tamanho real com fundo transparente */}
-            <div className="absolute left-8 top-0 bottom-0 w-80 flex items-center z-20">
-              {player.photoData?.url || player.photoUrl ? (
-                <img 
-                  src={player.photoData?.url || player.photoUrl} 
-                  alt={player.name}
-                  className="w-full h-auto object-contain max-h-full"
-                  style={{ 
-                    filter: 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3))',
-                    backgroundColor: 'transparent',
-                    mixBlendMode: 'normal'
-                  }}
-                />
-              ) : (
-                <div className="w-full h-64 bg-gray-200 rounded-lg flex items-center justify-center">
-                  <span className="text-gray-500">Sem foto</span>
-                </div>
-              )}
+            {/* Container para foto e primeiro nome (responsivo) */}
+            <div className="relative flex flex-col md:flex-row items-center justify-between h-full">
+              {/* Foto do jogador - Centralizada em mobile, à esquerda em desktop */}
+              <div className="w-full md:w-80 flex justify-center items-start md:items-center pt-8 md:pt-0 z-20 md:pl-8">
+                {player.photoData?.url || player.photoUrl ? (
+                  <img 
+                    src={player.photoData?.url || player.photoUrl} 
+                    alt={player.name}
+                    className="w-48 md:w-full h-auto object-contain max-h-64 md:max-h-full"
+                    style={{ 
+                      filter: 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3))',
+                      backgroundColor: 'transparent',
+                      mixBlendMode: 'normal'
+                    }}
+                  />
+                ) : (
+                  <div className="w-48 h-64 bg-gray-200 rounded-lg flex items-center justify-center">
+                    <span className="text-gray-500">Sem foto</span>
+                  </div>
+                )}
+              </div>
+              
+              {/* Primeiro nome - Centralizado abaixo da foto em mobile, no meio em desktop */}
+              <div className="w-full flex justify-center items-center py-6 md:py-0 md:absolute md:top-1/2 md:left-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 z-10">
+                <p className="text-white text-4xl md:text-5xl font-bold tracking-wider"
+                   style={{ 
+                     opacity: 0.9,
+                     textShadow: '2px 2px 6px rgba(0,0,0,0.7)',
+                     letterSpacing: '0.05em'
+                   }}>
+                  {player.name.split(' ')[0].toUpperCase()}
+                </p>
+              </div>
+              
+              {/* Espaço vazio para equilibrar layout em desktop */}
+              <div className="hidden md:block w-80"></div>
             </div>
           </div>
 
