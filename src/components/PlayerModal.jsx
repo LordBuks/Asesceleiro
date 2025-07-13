@@ -43,17 +43,21 @@ const PlayerModal = ({ player, isOpen, onClose }) => {
             
             {/* Container para foto e primeiro nome (responsivo) */}
             <div className="relative flex flex-col md:flex-row items-center justify-between h-full">
-              {/* Foto do jogador - Centralizada em mobile, à esquerda em desktop */}
-              <div className="w-full md:w-80 flex justify-center items-start md:items-center pt-8 md:pt-0 z-20 md:pl-8">
+              {/* Foto do jogador - Colada na borda inferior */}
+              <div className="w-full md:w-80 flex justify-center items-end pt-8 md:pt-0 z-20 md:pl-8" 
+                   style={{ height: '100%' }}>
                 {player.photoData?.url || player.photoUrl ? (
                   <img 
                     src={player.photoData?.url || player.photoUrl} 
                     alt={player.name}
-                    className="w-48 md:w-full h-auto object-contain max-h-64 md:max-h-full"
+                    className="w-48 md:w-full h-auto object-contain"
                     style={{ 
                       filter: 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3))',
                       backgroundColor: 'transparent',
-                      mixBlendMode: 'normal'
+                      mixBlendMode: 'normal',
+                      maxHeight: '95%',
+                      alignSelf: 'flex-end',
+                      objectPosition: 'bottom' // Garante que a base da imagem fique sempre colada
                     }}
                   />
                 ) : (
