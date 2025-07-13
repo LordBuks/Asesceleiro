@@ -5,7 +5,7 @@ const CategoryMenu = ({ selectedCategory, onCategoryChange }) => {
     <div className="bg-[#E5050F] py-6">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl font-bold text-white text-center mb-6">
-          MEN'S PROFILES
+         Atletas Alojados
         </h2>
         <div className="flex flex-wrap justify-center gap-4">
           {categories.map((category) => (
