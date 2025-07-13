@@ -27,28 +27,29 @@ const PlayerModal = ({ player, isOpen, onClose }) => {
           {/* Degradê vermelho suave para branco */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#E5050F] via-[#E5050F] to-white"></div>
           
-          {/* Nome estilizado ao fundo - Primeiro nome pequeno, sobrenome grande */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <h3 className="chelsea-player-firstname text-white font-bold text-2xl md:text-3xl lg:text-4xl opacity-30 select-none pointer-events-none mb-2">
-              {player.name.split(' ')[0]}
-            </h3>
-            <h1 className="chelsea-player-name text-white font-black text-6xl md:text-8xl lg:text-9xl opacity-20 select-none pointer-events-none">
+          {/* Nome estilizado ao fundo - Layout original melhorado */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <h1 className="chelsea-player-name text-white font-black text-6xl md:text-8xl lg:text-9xl opacity-30 select-none pointer-events-none">
               {player.name.split(' ').slice(1).join(' ').toUpperCase()}
             </h1>
           </div>
           
-          {/* Foto do jogador - Lado esquerdo, tamanho real */}
+          {/* Foto do jogador - Lado esquerdo, tamanho real com fundo transparente */}
           <div className="absolute left-8 top-0 bottom-0 w-80 flex items-center">
             {player.photoData?.url || player.photoUrl ? (
               <img 
                 src={player.photoData?.url || player.photoUrl} 
                 alt={player.name}
                 className="w-full h-auto object-contain max-h-full"
-                style={{ filter: 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3))' }}
+                style={{ 
+                  filter: 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3))',
+                  backgroundColor: 'transparent',
+                  mixBlendMode: 'normal'
+                }}
               />
             ) : (
-              <div className="w-full h-80 bg-gray-200 rounded-lg flex items-center justify-center">
-                <span className="text-gray-400 text-lg">Sem foto</span>
+              <div className="w-full h-80 bg-transparent flex items-center justify-center">
+                <span className="text-white text-lg opacity-50">Sem foto</span>
               </div>
             )}
           </div>
@@ -145,16 +146,42 @@ const PlayerModal = ({ player, isOpen, onClose }) => {
             </div>
           </div>
 
-          {/* Observações Médicas - Seção completa */}
-          <div className="mt-6 bg-red-50 p-4 rounded-lg border border-red-200">
-            <h4 className="text-lg font-semibold text-red-800 mb-3">Observações Médicas</h4>
-            <div>
-              <label className="block text-sm font-medium text-red-700 mb-1">
-                Alergias e Observações
-              </label>
-              <p className="text-red-900 whitespace-pre-wrap">
-                {player.medicalObservations || 'Nenhuma observação médica registrada'}
-              </p>
+          {/* Observações Médicas e Contato de Emergência - Seções divididas */}
+          <div className="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Observações Médicas */}
+            <div className="bg-red-50 p-4 rounded-lg border border-red-200">
+              <h4 className="text-lg font-semibold text-red-800 mb-3">Observações Médicas</h4>
+              <div>
+                <label className="block text-sm font-medium text-red-700 mb-1">
+                  Alergias e Observações
+                </label>
+                <p className="text-red-900 whitespace-pre-wrap">
+                  {player.medicalObservations || 'Nenhuma observação médica registrada'}
+                </p>
+              </div>
+            </div>
+
+            {/* Contato dos Responsáveis para Emergência */}
+            <div className="bg-green-50 p-4 rounded-lg border border-green-200">
+              <h4 className="text-lg font-semibold text-green-800 mb-3">Contato dos Responsáveis para Emergência</h4>
+              <div className="space-y-3">
+                <div>
+                  <label className="block text-sm font-medium text-green-700 mb-1">
+                    Nome do Responsável
+                  </label>
+                  <p className="text-green-900">
+                    {player.emergencyContactName || 'Não informado'}
+                  </p>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-green-700 mb-1">
+                    Telefone
+                  </label>
+                  <p className="text-green-900">
+                    {player.emergencyContactPhone || 'Não informado'}
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

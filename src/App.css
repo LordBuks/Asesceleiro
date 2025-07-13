@@ -180,18 +180,11 @@
 }
 
 
-/* Estilos para o modal estilo Chelsea - Layout Atualizado */
+/* Estilos para o modal estilo Chelsea - Layout Atualizado com Efeito 3D */
 .chelsea-hero-section {
   position: relative;
-  background: linear-gradient(to right, #E5050F 0%, #E5050F 60%, #ffffff 100%);
-}
-
-.chelsea-player-firstname {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(135deg, #E5050F 0%, #C20C18 30%, #A01015 60%, #ffffff 100%);
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.2);
 }
 
 .chelsea-player-name {
@@ -200,7 +193,15 @@
   letter-spacing: -0.05em;
   line-height: 0.8;
   text-transform: uppercase;
-  text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.6);
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 
+    0 0 10px rgba(255, 255, 255, 0.8),
+    0 0 20px rgba(255, 255, 255, 0.6),
+    0 0 30px rgba(255, 255, 255, 0.4),
+    2px 2px 0px rgba(0, 0, 0, 0.3),
+    4px 4px 0px rgba(0, 0, 0, 0.2),
+    6px 6px 0px rgba(0, 0, 0, 0.1);
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
 }
 
 .chelsea-player-surname {
@@ -210,14 +211,10 @@
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* Responsividade para o modal Chelsea - Layout Atualizado */
+/* Responsividade para o modal Chelsea - Layout 3D Atualizado */
 @media (max-width: 1024px) {
   .chelsea-player-name {
     font-size: 4rem;
-  }
-  
-  .chelsea-player-firstname {
-    font-size: 1.5rem;
   }
   
   .chelsea-hero-section .absolute.left-8 {
@@ -235,10 +232,6 @@
     font-size: 3rem;
   }
   
-  .chelsea-player-firstname {
-    font-size: 1.25rem;
-  }
-  
   .chelsea-hero-section .absolute.left-8 {
     left: 0.5rem;
     width: 12rem;
@@ -252,10 +245,6 @@
   
   .chelsea-player-name {
     font-size: 2.5rem;
-  }
-  
-  .chelsea-player-firstname {
-    font-size: 1rem;
   }
   
   .chelsea-hero-section .absolute.left-8 {
