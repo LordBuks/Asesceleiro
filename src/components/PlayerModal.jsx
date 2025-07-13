@@ -22,24 +22,24 @@ const PlayerModal = ({ player, isOpen, onClose }) => {
             {/* Degradê vermelho suave para branco */}
             <div className="absolute inset-0 bg-gradient-to-r from-[#E5050F] via-[#E5050F] to-white"></div>
             
-            {/* Sobrenomes BEM GRANDES com transparência no fundo */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center">
-              {player.name.split(' ').slice(1).map((namePart, index) => (
-                <h1 
-                  key={index}
-                  className="text-white font-black select-none pointer-events-none leading-none tracking-tight"
-                  style={{ 
-                    fontSize: 'clamp(4rem, 12vw, 10rem)',
-                    marginTop: index > 0 ? '-0.1em' : '0',
-                    opacity: 0.2,
-                    color: 'rgba(255, 255, 255, 0.3)',
-                    textShadow: '0 0 30px rgba(255,255,255,0.1)'
-                  }}
-                >
-                  {namePart.toUpperCase()}
-                </h1>
-              ))}
-            </div>
+                  {/* Sobrenomes BEM GRANDES com transparência no fundo */}
+                  <div className="absolute inset-0 flex flex-col items-center justify-center">
+                    {player.name.split(" ").slice(1).map((namePart, index) => (
+                      <h1 
+                        key={index}
+                        className="text-white font-black select-none pointer-events-none leading-none tracking-tight"
+                        style={{ 
+                          fontSize: 'clamp(2.8rem, 8.4vw, 7rem)',
+                          marginTop: index > 0 ? '-0.1em' : '0',
+                          opacity: 0.4, /* Aumentando a opacidade para 40% */
+                          color: 'rgba(255, 255, 255, 0.5)', /* Cor mais visível */
+                          textShadow: '2px 2px 8px rgba(0, 0, 0, 0.3)' /* Sombra suave */
+                        }}
+                      >
+                        {namePart.toUpperCase()}
+                      </h1>
+                    ))}
+                  </div>
             
             {/* Primeiro nome no centro, um pouco mais para cima */}
             <div className="absolute top-16 left-1/2 transform -translate-x-1/2 z-10">
