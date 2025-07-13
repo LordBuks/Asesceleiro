@@ -13,7 +13,9 @@ const PlayerForm = ({ player, onSubmit, onCancel }) => {
     birthplace: '',
     room: '',
     medicalObservations: '',
-    category: 'Sub20'
+    category: 'Sub20',
+    emergencyContactName: '',
+    emergencyContactPhone: ''
   });
   const [photoFile, setPhotoFile] = useState(null);
   const [photoPreview, setPhotoPreview] = useState('');
@@ -47,7 +49,9 @@ const PlayerForm = ({ player, onSubmit, onCancel }) => {
         birthplace: player.birthplace || '',
         room: player.room || '',
         medicalObservations: player.medicalObservations || '',
-        category: player.category || 'Sub20'
+        category: player.category || 'Sub20',
+        emergencyContactName: player.emergencyContactName || '',
+        emergencyContactPhone: player.emergencyContactPhone || ''
       });
       setPhotoPreview(player.photoUrl || '');
     }
@@ -332,6 +336,42 @@ const PlayerForm = ({ player, onSubmit, onCancel }) => {
                   );
                 })}
               </select>
+            </div>
+          </div>
+
+          {/* Contato dos Responsáveis para Emergência */}
+          <div className="mt-6">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Contato dos Responsáveis para Emergência</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Nome do Responsável */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Nome do Responsável
+                </label>
+                <input
+                  type="text"
+                  name="emergencyContactName"
+                  value={formData.emergencyContactName}
+                  onChange={handleInputChange}
+                  placeholder="Nome completo do responsável"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E5050F] focus:border-transparent"
+                />
+              </div>
+
+              {/* Telefone do Responsável */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Telefone do Responsável
+                </label>
+                <input
+                  type="tel"
+                  name="emergencyContactPhone"
+                  value={formData.emergencyContactPhone}
+                  onChange={handleInputChange}
+                  placeholder="(xx) 9xxxx-xxxx"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E5050F] focus:border-transparent"
+                />
+              </div>
             </div>
           </div>
 

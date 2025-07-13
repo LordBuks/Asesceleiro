@@ -27,11 +27,20 @@ const PlayerModal = ({ player, isOpen, onClose }) => {
           {/* Degradê vermelho suave para branco */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#E5050F] via-[#E5050F] to-white"></div>
           
-          {/* Nome estilizado ao fundo - Layout original melhorado */}
+          {/* Nome estilizado ao fundo - Layout original da imagem */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <h1 className="chelsea-player-name text-white font-black text-6xl md:text-8xl lg:text-9xl opacity-30 select-none pointer-events-none">
+            <h1 className="chelsea-player-name text-white font-black text-6xl md:text-8xl lg:text-9xl opacity-20 select-none pointer-events-none">
               {player.name.split(' ').slice(1).join(' ').toUpperCase()}
             </h1>
+          </div>
+          
+          {/* Informações principais - Primeiro nome pequeno */}
+          <div className="absolute left-8 bottom-8 text-white">
+            <p className="text-lg font-medium mb-2">{player.name.split(' ')[0]}</p>
+            <h2 className="text-4xl md:text-5xl font-black mb-4 chelsea-player-surname">
+              {player.name.split(' ').slice(1).join(' ').toUpperCase()}
+            </h2>
+            <p className="text-xl font-medium">{player.position || 'Posição não informada'}</p>
           </div>
           
           {/* Foto do jogador - Lado esquerdo, tamanho real com fundo transparente */}
