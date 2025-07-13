@@ -10,7 +10,7 @@ const PlayerModal = ({ player, isOpen, onClose }) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-      <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+      <div className="bg-white rounded-lg max-w-4xl w-full max-h-[95vh] overflow-y-auto">
         <div className="flex justify-between items-center p-6 border-b">
           <h2 className="text-2xl font-bold text-gray-900">Detalhes do Jogador</h2>
           <button 
@@ -22,8 +22,8 @@ const PlayerModal = ({ player, isOpen, onClose }) => {
         </div>
         
         <div className="p-6">
-          <div className="flex flex-col md:flex-row gap-6">
-            <div className="md:w-1/3">
+          <div className="flex flex-col lg:flex-row gap-6">
+            <div className="lg:w-1/3">
               {player.photoData?.url || player.photoUrl ? (
                 <img 
                   src={player.photoData?.url || player.photoUrl} 
@@ -37,59 +37,101 @@ const PlayerModal = ({ player, isOpen, onClose }) => {
               )}
             </div>
             
-            <div className="md:w-2/3 space-y-4">
+            <div className="lg:w-2/3 space-y-6">
               <div>
-                <h3 className="text-xl font-bold text-[#E5050F] mb-4">{player.name}</h3>
+                <h3 className="text-xl font-bold text-[#E5050F] mb-6">{player.name}</h3>
               </div>
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Data de Nascimento
-                  </label>
-                  <p className="text-gray-900">{formatDate(player.birthDate)}</p>
+              {/* Dados Pessoais */}
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <h4 className="text-lg font-semibold text-gray-800 mb-3">Dados Pessoais</h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Data de Nascimento
+                    </label>
+                    <p className="text-gray-900">{formatDate(player.birthDate)}</p>
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Naturalidade
+                    </label>
+                    <p className="text-gray-900">{player.birthplace || 'Não informado'}</p>
+                  </div>
                 </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Posição
-                  </label>
-                  <p className="text-gray-900">{player.position || 'Não informado'}</p>
+              </div>
+
+              {/* Dados Esportivos */}
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <h4 className="text-lg font-semibold text-gray-800 mb-3">Dados Esportivos</h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Posição
+                    </label>
+                    <p className="text-gray-900">{player.position || 'Não informado'}</p>
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Categoria
+                    </label>
+                    <p className="text-gray-900">{player.category}</p>
+                  </div>
                 </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Admissão no Alojamento
-                  </label>
-                  <p className="text-gray-900">{formatDate(player.admissionDate)}</p>
+              </div>
+
+              {/* Dados Acadêmicos */}
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <h4 className="text-lg font-semibold text-gray-800 mb-3">Dados Acadêmicos</h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Escola
+                    </label>
+                    <p className="text-gray-900">{player.school || 'Não informado'}</p>
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Ano que Estuda
+                    </label>
+                    <p className="text-gray-900">{player.year || 'Não informado'}</p>
+                  </div>
                 </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Escola
-                  </label>
-                  <p className="text-gray-900">{player.school || 'Não informado'}</p>
+              </div>
+
+              {/* Dados do Alojamento */}
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <h4 className="text-lg font-semibold text-gray-800 mb-3">Dados do Alojamento</h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Admissão no Alojamento
+                    </label>
+                    <p className="text-gray-900">{formatDate(player.admissionDate)}</p>
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Quarto
+                    </label>
+                    <p className="text-gray-900">{player.room || 'Não informado'}</p>
+                  </div>
                 </div>
-                
+              </div>
+
+              {/* Observações Médicas */}
+              <div className="bg-red-50 p-4 rounded-lg border border-red-200">
+                <h4 className="text-lg font-semibold text-red-800 mb-3">Observações Médicas</h4>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Ano
+                  <label className="block text-sm font-medium text-red-700 mb-1">
+                    Alergias e Observações
                   </label>
-                  <p className="text-gray-900">{player.year || 'Não informado'}</p>
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Naturalidade
-                  </label>
-                  <p className="text-gray-900">{player.birthplace || 'Não informado'}</p>
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Categoria
-                  </label>
-                  <p className="text-gray-900">{player.category}</p>
+                  <p className="text-red-900 whitespace-pre-wrap">
+                    {player.medicalObservations || 'Nenhuma observação médica registrada'}
+                  </p>
                 </div>
               </div>
             </div>

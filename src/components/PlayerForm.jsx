@@ -11,6 +11,8 @@ const PlayerForm = ({ player, onSubmit, onCancel }) => {
     school: '',
     year: '',
     birthplace: '',
+    room: '',
+    medicalObservations: '',
     category: 'Sub20'
   });
   const [photoFile, setPhotoFile] = useState(null);
@@ -43,6 +45,8 @@ const PlayerForm = ({ player, onSubmit, onCancel }) => {
         school: player.school || '',
         year: player.year || '',
         birthplace: player.birthplace || '',
+        room: player.room || '',
+        medicalObservations: player.medicalObservations || '',
         category: player.category || 'Sub20'
       });
       setPhotoPreview(player.photoUrl || '');
@@ -256,29 +260,41 @@ const PlayerForm = ({ player, onSubmit, onCancel }) => {
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Escola
               </label>
-              <input
-                type="text"
+              <select
                 name="school"
                 value={formData.school}
                 onChange={handleInputChange}
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E5050F] focus:border-transparent"
-              />
+              >
+                <option value="">Selecione uma escola</option>
+                <option value="Escola São Francisco Turno - Manhã">Escola São Francisco Turno - Manhã</option>
+                <option value="Escola Estadual Padre Léo - Turno Manhã">Escola Estadual Padre Léo - Turno Manhã</option>
+                <option value="E.E.E.B Gentil Viegas Cardoso - Turno Noite">E.E.E.B Gentil Viegas Cardoso - Turno Noite</option>
+                <option value="E.E.E.B Júlio Cesar - Turno Noite">E.E.E.B Júlio Cesar - Turno Noite</option>
+                <option value="E.M.E.F Professor Juliano Nascimento - Turno Noite">E.M.E.F Professor Juliano Nascimento - Turno Noite</option>
+              </select>
             </div>
 
-            {/* Ano */}
+            {/* Ano que Estuda */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Ano
+                Ano que Estuda
               </label>
-              <input
-                type="number"
+              <select
                 name="year"
                 value={formData.year}
                 onChange={handleInputChange}
-                min="2020"
-                max="2030"
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E5050F] focus:border-transparent"
-              />
+              >
+                <option value="">Selecione o ano</option>
+                <option value="6º Ano EF">6º Ano EF</option>
+                <option value="7º Ano EF">7º Ano EF</option>
+                <option value="8º Ano EF">8º Ano EF</option>
+                <option value="9º Ano EF">9º Ano EF</option>
+                <option value="1º Ano EM">1º Ano EM</option>
+                <option value="2º Ano EM">2º Ano EM</option>
+                <option value="3º Ano EM">3º Ano EM</option>
+              </select>
             </div>
 
             {/* Naturalidade */}
@@ -294,6 +310,44 @@ const PlayerForm = ({ player, onSubmit, onCancel }) => {
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E5050F] focus:border-transparent"
               />
             </div>
+
+            {/* Quarto */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Quarto
+              </label>
+              <select
+                name="room"
+                value={formData.room}
+                onChange={handleInputChange}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E5050F] focus:border-transparent"
+              >
+                <option value="">Selecione o quarto</option>
+                {Array.from({ length: 20 }, (_, i) => {
+                  const roomNumber = String(i + 1).padStart(2, '0');
+                  return (
+                    <option key={roomNumber} value={roomNumber}>
+                      {roomNumber}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
+          </div>
+
+          {/* Observações Médicas */}
+          <div className="mt-4">
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Observações Médicas (Alergias, medicamentos, etc.)
+            </label>
+            <textarea
+              name="medicalObservations"
+              value={formData.medicalObservations}
+              onChange={handleInputChange}
+              rows={3}
+              placeholder="Descreva alergias a medicamentos, condições médicas especiais ou outras observações relevantes..."
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E5050F] focus:border-transparent resize-vertical"
+            />
           </div>
 
           <div className="flex justify-end space-x-4 mt-6 pt-6 border-t">
