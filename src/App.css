@@ -179,3 +179,95 @@
   }
 }
 
+
+/* Estilos para o modal estilo Chelsea */
+.chelsea-hero-section {
+  position: relative;
+  background: linear-gradient(135deg, #E5050F 0%, #C20C18 50%, #A01015 100%);
+}
+
+.chelsea-player-name {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  line-height: 0.8;
+  text-transform: uppercase;
+  background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.3));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 30px rgba(255,255,255,0.1);
+}
+
+.chelsea-player-surname {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsividade para o modal Chelsea */
+@media (max-width: 1024px) {
+  .chelsea-player-name {
+    font-size: 4rem;
+  }
+  
+  .chelsea-hero-section .absolute.right-8 {
+    right: 1rem;
+    width: 16rem;
+  }
+  
+  .chelsea-hero-section .absolute.left-8 {
+    left: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .chelsea-hero-section {
+    height: 20rem;
+  }
+  
+  .chelsea-player-name {
+    font-size: 3rem;
+  }
+  
+  .chelsea-player-surname {
+    font-size: 2rem;
+  }
+  
+  .chelsea-hero-section .absolute.right-8 {
+    right: 0.5rem;
+    top: 1rem;
+    bottom: 1rem;
+    width: 12rem;
+  }
+  
+  .chelsea-hero-section .absolute.left-8 {
+    left: 0.5rem;
+    bottom: 1rem;
+  }
+  
+  .chelsea-hero-section .absolute.top-8.left-8 {
+    top: 0.5rem;
+    left: 0.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .chelsea-hero-section {
+    height: 16rem;
+  }
+  
+  .chelsea-player-name {
+    font-size: 2.5rem;
+  }
+  
+  .chelsea-player-surname {
+    font-size: 1.5rem;
+  }
+  
+  .chelsea-hero-section .absolute.right-8 {
+    width: 10rem;
+  }
+}
+
