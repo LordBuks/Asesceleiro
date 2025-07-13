@@ -27,20 +27,30 @@ const PlayerModal = ({ player, isOpen, onClose }) => {
           {/* Degradê vermelho suave para branco */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#E5050F] via-[#E5050F] to-white"></div>
           
-          {/* Nome estilizado ao fundo - Layout original da imagem */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <h1 className="chelsea-player-name text-white font-black text-6xl md:text-8xl lg:text-9xl opacity-20 select-none pointer-events-none">
-              {player.name.split(' ').slice(1).join(' ').toUpperCase()}
-            </h1>
-          </div>
-          
-          {/* Informações principais - Primeiro nome pequeno */}
-          <div className="absolute left-8 bottom-8 text-white">
-            <p className="text-lg font-medium mb-2">{player.name.split(' ')[0]}</p>
-            <h2 className="text-4xl md:text-5xl font-black mb-4 chelsea-player-surname">
-              {player.name.split(' ').slice(1).join(' ').toUpperCase()}
-            </h2>
-            <p className="text-xl font-medium">{player.position || 'Posição não informada'}</p>
+          {/* Nome estilizado ao fundo - Partindo de trás do atleta */}
+          <div className="absolute inset-0">
+            {/* Sobrenomes grandes com transparência elegante partindo de trás do atleta */}
+            <div className="absolute inset-0 flex flex-col items-start justify-center pl-80">
+              {player.name.split(' ').slice(1).map((namePart, index) => (
+                <h1 
+                  key={index}
+                  className="chelsea-player-name-bg text-white font-black text-7xl md:text-9xl lg:text-[12rem] opacity-10 select-none pointer-events-none leading-none tracking-tight"
+                  style={{ 
+                    marginTop: index > 0 ? '-0.15em' : '0',
+                    transform: 'translateX(-20px)'
+                  }}
+                >
+                  {namePart.toUpperCase()}
+                </h1>
+              ))}
+            </div>
+            
+            {/* Primeiro nome menor no meio, em cima do resto */}
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
+              <p className="text-white text-3xl md:text-4xl font-semibold opacity-90 text-center">
+                {player.name.split(' ')[0].toUpperCase()}
+              </p>
+            </div>
           </div>
           
           {/* Foto do jogador - Lado esquerdo, tamanho real com fundo transparente */}
