@@ -22,38 +22,39 @@ const PlayerModal = ({ player, isOpen, onClose }) => {
             {/* Degradê vermelho suave para branco */}
             <div className="absolute inset-0 bg-gradient-to-r from-[#E5050F] via-[#E5050F] to-white"></div>
             
-                  {/* Sobrenomes BEM GRANDES com transparência no fundo */}
-                  <div className="absolute inset-0 flex flex-col items-center justify-center">
-                    {player.name.split(" ").slice(1).map((namePart, index) => (
-                      <h1 
-                        key={index}
-                        className="text-white font-black select-none pointer-events-none leading-none tracking-tight"
-                        style={{ 
-                          fontSize: 'clamp(2.0rem, 8.0vw, 4rem)',
-                          marginTop: index > 0 ? '-0.1em' : '0',
-                          opacity: 0.4, /* Aumentando a opacidade para 40% */
-                          color: 'rgba(255, 255, 255, 0.5)', /* Cor mais visível */
-                          textShadow: '2px 2px 8px rgba(0, 0, 0, 0.3)' /* Sombra suave */
-                        }}
-                      >
-                        {namePart.toUpperCase()}
-                      </h1>
-                    ))}
-                  </div>
+            {/* Sobrenomes BEM GRANDES com transparência no fundo */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center">
+              {player.name.split(" ").slice(1).map((namePart, index) => (
+                <h1 
+                  key={index}
+                  className="text-white font-black select-none pointer-events-none leading-none tracking-tight"
+                  style={{ 
+                    fontSize: 'clamp(3rem, 9vw, 7rem)',
+                    marginTop: index > 0 ? '-0.15em' : '0',
+                    opacity: 0.4,
+                    color: 'rgba(255, 255, 255, 0.5)',
+                    textShadow: '2px 2px 8px rgba(0, 0, 0, 0.3)'
+                  }}
+                >
+                  {namePart.toUpperCase()}
+                </h1>
+              ))}
+            </div>
             
-            {/* Primeiro nome no centro, um pouco mais para cima */}
-            <div className="absolute top-16 left-1/2 transform -translate-x-1/2 z-10">
-              <p className="text-white text-2xl md:text-3xl font-semibold text-center tracking-wide"
+            {/* Primeiro nome CENTRALIZADO horizontal e verticalmente */}
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 w-full text-center">
+              <p className="text-white text-4xl md:text-5xl font-bold tracking-wider"
                  style={{ 
                    opacity: 0.9,
-                   textShadow: '2px 2px 4px rgba(0,0,0,0.5)'
+                   textShadow: '2px 2px 6px rgba(0,0,0,0.7)',
+                   letterSpacing: '0.05em'
                  }}>
                 {player.name.split(' ')[0].toUpperCase()}
               </p>
             </div>
             
             {/* Foto do jogador - Lado esquerdo, tamanho real com fundo transparente */}
-            <div className="absolute left-8 top-0 bottom-0 w-80 flex items-center">
+            <div className="absolute left-8 top-0 bottom-0 w-80 flex items-center z-20">
               {player.photoData?.url || player.photoUrl ? (
                 <img 
                   src={player.photoData?.url || player.photoUrl} 
@@ -236,4 +237,3 @@ const PlayerModal = ({ player, isOpen, onClose }) => {
 };
 
 export default PlayerModal;
-
