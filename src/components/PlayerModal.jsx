@@ -24,45 +24,33 @@ const PlayerModal = ({ player, isOpen, onClose }) => {
         
         {/* Seção de destaque estilo Chelsea */}
         <div className="relative h-96 overflow-hidden chelsea-hero-section">
-          {/* Degradê vermelho de fundo */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#E5050F] via-[#C20C18] to-[#A01015]"></div>
+          {/* Degradê vermelho suave para branco */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#E5050F] via-[#E5050F] to-white"></div>
           
-          {/* Nome estilizado ao fundo */}
-          <div className="absolute inset-0 flex items-center justify-center">
+          {/* Nome estilizado ao fundo - Primeiro nome pequeno, sobrenome grande */}
+          <div className="absolute inset-0 flex flex-col items-center justify-center">
+            <h3 className="chelsea-player-firstname text-white font-bold text-2xl md:text-3xl lg:text-4xl opacity-30 select-none pointer-events-none mb-2">
+              {player.name.split(' ')[0]}
+            </h3>
             <h1 className="chelsea-player-name text-white font-black text-6xl md:text-8xl lg:text-9xl opacity-20 select-none pointer-events-none">
-              {player.name.split(' ').pop().toUpperCase()}
+              {player.name.split(' ').slice(1).join(' ').toUpperCase()}
             </h1>
           </div>
           
-          {/* Foto do jogador */}
-          <div className="absolute right-8 top-8 bottom-8 w-80">
+          {/* Foto do jogador - Lado esquerdo, tamanho real */}
+          <div className="absolute left-8 top-0 bottom-0 w-80 flex items-center">
             {player.photoData?.url || player.photoUrl ? (
               <img 
                 src={player.photoData?.url || player.photoUrl} 
                 alt={player.name}
-                className="w-full h-full object-cover object-center rounded-lg shadow-2xl"
+                className="w-full h-auto object-contain max-h-full"
+                style={{ filter: 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3))' }}
               />
             ) : (
-              <div className="w-full h-full bg-gray-200 rounded-lg flex items-center justify-center shadow-2xl">
+              <div className="w-full h-80 bg-gray-200 rounded-lg flex items-center justify-center">
                 <span className="text-gray-400 text-lg">Sem foto</span>
               </div>
             )}
-          </div>
-          
-          {/* Informações principais */}
-          <div className="absolute left-8 bottom-8 text-white">
-            <p className="text-lg font-medium mb-2">{player.name.split(' ')[0]}</p>
-            <h2 className="text-4xl md:text-5xl font-black mb-4 chelsea-player-surname">
-              {player.name.split(' ').slice(1).join(' ').toUpperCase()}
-            </h2>
-            <p className="text-xl font-medium">{player.position || 'Posição não informada'}</p>
-          </div>
-          
-          {/* Número da camisa (se disponível) */}
-          <div className="absolute top-8 left-8 text-white">
-            <span className="text-6xl font-black opacity-60">
-              {player.number || player.category?.replace('Sub', '')}
-            </span>
           </div>
         </div>
         
@@ -73,6 +61,13 @@ const PlayerModal = ({ player, isOpen, onClose }) => {
             <div className="bg-gray-50 p-4 rounded-lg">
               <h4 className="text-lg font-semibold text-gray-800 mb-3">Dados Pessoais</h4>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="sm:col-span-2">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Nome Completo
+                  </label>
+                  <p className="text-gray-900 font-semibold">{player.name}</p>
+                </div>
+                
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Data de Nascimento
