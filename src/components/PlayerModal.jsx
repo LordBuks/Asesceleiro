@@ -29,7 +29,7 @@ const PlayerModal = ({ player, isOpen, onClose }) => {
                         key={index}
                         className="text-white font-black select-none pointer-events-none leading-none tracking-tight"
                         style={{ 
-                          fontSize: 'clamp(2.8rem, 8.4vw, 7rem)',
+                          fontSize: 'clamp(2.0rem, 8.0vw, 4rem)',{/* AQUI MUDEI O TAMANHO DA FONTE */}
                           marginTop: index > 0 ? '-0.1em' : '0',
                           opacity: 0.4, /* Aumentando a opacidade para 40% */
                           color: 'rgba(255, 255, 255, 0.5)', /* Cor mais visível */
