@@ -27,30 +27,68 @@ const PlayerModal = ({ player, isOpen, onClose }) => {
           {/* Degradê vermelho suave para branco */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#E5050F] via-[#E5050F] to-white"></div>
           
-          {/* Nome estilizado ao fundo - Partindo de trás do atleta */}
+          {/* Nome estilizado ao fundo - Exatamente como na imagem de referência */}
           <div className="absolute inset-0">
-            {/* Sobrenomes grandes com transparência elegante partindo de trás do atleta */}
-            <div className="absolute inset-0 flex flex-col items-start justify-center pl-80">
-              {player.name.split(' ').slice(1).map((namePart, index) => (
-                <h1 
-                  key={index}
-                  className="chelsea-player-name-bg text-white font-black text-7xl md:text-9xl lg:text-[12rem] opacity-10 select-none pointer-events-none leading-none tracking-tight"
-                  style={{ 
-                    marginTop: index > 0 ? '-0.15em' : '0',
-                    transform: 'translateX(-20px)'
-                  }}
-                >
-                  {namePart.toUpperCase()}
-                </h1>
-              ))}
-            </div>
-            
-            {/* Primeiro nome menor no meio, em cima do resto */}
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
-              <p className="text-white text-3xl md:text-4xl font-semibold opacity-90 text-center">
-                {player.name.split(' ')[0].toUpperCase()}
-              </p>
-            </div>
+            {(() => {
+              const nameParts = player.name.split(' ');
+              
+              // Regra para nomes compostos
+              let firstName = '';
+              let surnames = [];
+              
+              if (nameParts.length === 1) {
+                // Apenas um nome
+                firstName = nameParts[0];
+                surnames = [];
+              } else if (nameParts.length === 2) {
+                // Nome e sobrenome
+                firstName = nameParts[0];
+                surnames = [nameParts[1]];
+              } else if (nameParts.length >= 3) {
+                // Verificar se o segundo nome é composto (João Pedro, Ana Clara, etc.)
+                const commonCompositeNames = ['pedro', 'paulo', 'carlos', 'josé', 'joão', 'maria', 'ana', 'clara', 'luiza', 'vitória', 'gabriel', 'miguel', 'rafael', 'daniel'];
+                
+                if (commonCompositeNames.includes(nameParts[1].toLowerCase())) {
+                  // Nome composto
+                  firstName = `${nameParts[0]} ${nameParts[1]}`;
+                  surnames = nameParts.slice(2);
+                } else {
+                  // Nome simples
+                  firstName = nameParts[0];
+                  surnames = nameParts.slice(1);
+                }
+              }
+              
+              return (
+                <>
+                  {/* Sobrenomes BEM GRANDES partindo de trás do jogador */}
+                  {surnames.length > 0 && (
+                    <div className="absolute inset-0 flex flex-col items-start justify-center pl-72">
+                      {surnames.map((namePart, index) => (
+                        <h1 
+                          key={index}
+                          className="chelsea-player-name-bg text-white font-black opacity-15 select-none pointer-events-none leading-none tracking-tight"
+                          style={{ 
+                            fontSize: 'clamp(5rem, 15vw, 12rem)',
+                            marginTop: index > 0 ? '-0.05em' : '0',
+                            color: 'rgba(255, 255, 255, 0.2)'
+                          }}
+                        >
+                          {namePart.toUpperCase()}
+                        </h1>
+                      ))}
+                    </div>
+                  )}
+                  
+                  {/* Primeiro nome no centro */}
+                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
+                    <p className="text-white text-3xl md:text-4xl font-bold opacity-95 text-center tracking-wide">
+                      {firstName.toUpperCase()}
+                    </p>
+                  </div>
+                </>
+              );
+            })()}
           </div>
           
           {/* Foto do jogador - Lado esquerdo, tamanho real com fundo transparente */}
