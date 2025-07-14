@@ -68,7 +68,7 @@ const PlayerModal = ({ player, isOpen, onClose }) => { // Define o componente fu
               </div>
               
               {/* Primeiro nome - Posicionado sobre o segundo nome, alinhado à esquerda e um pouco mais para baixo */} {/* Comentário para indicar a seção do primeiro nome. */}
-              <div className="absolute z-10" style={{ top: 'calc(50% - 72px)', left: 'calc(50% - 190px)' }}> {/* Div para o primeiro nome, com posicionamento absoluto. Ajustado para ficar mais à esquerda e um pouco mais para baixo em relação ao centro, com valores mais precisos. */}
+              <div className="absolute z-10" style={{ top: 'calc(50% - 69px)', left: 'calc(50% - 195px)' }}> {/* Div para o primeiro nome, com posicionamento absoluto. Ajustado para ficar mais à esquerda e um pouco mais para baixo em relação ao centro, com valores mais precisos. */}
                 <p className="text-white text-4xl md:text-5xl font-bold tracking-wider" // Parágrafo para exibir o primeiro nome, com estilos de texto e espaçamento.
                    style={{ // Estilos inline para opacidade, sombra do texto e espaçamento entre letras.
                      opacity: 0.9, // Opacidade do texto.
