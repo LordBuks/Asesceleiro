@@ -23,7 +23,7 @@ const PlayerModal = ({ player, isOpen, onClose }) => { // Define o componente fu
             <div className="absolute inset-0 bg-gradient-to-r from-white via-[#E5050F] to-[#E5050F]"></div> {/* Div que cria o efeito de gradiente de branco para vermelho, cobrindo toda a seção. */} 
             
             {/* Sobrenomes BEM GRANDES com transparência no fundo */} {/* Comentário para indicar a seção dos sobrenomes grandes. */} 
-            <div className="absolute inset-0 flex flex-col items-center justify-center pl-28"> {/* Div que centraliza os sobrenomes, com posicionamento absoluto e padding-left para mover para a direita. */} 
+            <div className="absolute inset-0 flex flex-col items-center justify-center pl-33"> {/* Div que centraliza os sobrenomes, com posicionamento absoluto e padding-left para mover para a direita. */} 
               {player.name.split(" ").slice(1).map((namePart, index) => ( // Mapeia as partes do nome do jogador (exceto o primeiro) para criar um h1 para cada. 
                 <h1 // Elemento h1 para exibir cada parte do sobrenome. 
                   key={index} // Chave única para cada item na lista, importante para o React. 
