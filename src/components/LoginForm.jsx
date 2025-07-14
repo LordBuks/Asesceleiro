@@ -101,15 +101,27 @@ const LoginForm = ({ onClose }) => {
           </button>
         </form>
 
-        <div className="mt-4 text-sm text-gray-600">
-          <p><strong>Credenciais de teste:</strong></p>
-          <p>Email: admin@celeiro.com</p>
-          <p>Senha: admin123</p>
+
+
+        <div className="mt-4 text-center">
+          <img src="https://imgur.com/HIsH9X5.png" alt="Logo SC Internacional" className="mx-auto h-20 w-auto mb-2" />
+          <p className="text-gray-700 text-lg font-semibold">Gerenciamento de atletas</p>
+          <p className="text-gray-600 text-md">Departamento de Serviço Social</p>
         </div>
+
       </div>
     </div>
   );
 };
 
 export default LoginForm;
+
+
+
+        <div className="mt-4 text-center">
+          <img src="https://imgur.com/HIsH9X5.png" alt="Logo SC Internacional" className="mx-auto h-20 w-auto mb-2" />
+          <p className="text-gray-700 text-lg font-semibold">Gerenciamento de atletas</p>
+          <p className="text-gray-600 text-md">Departamento de Serviço Social</p>
+        </div>
+
 
