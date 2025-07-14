@@ -5,6 +5,7 @@ import { utils } from '../services/firebaseService';
 const PlayerForm = ({ player, onSubmit, onCancel }) => {
   const [formData, setFormData] = useState({
     name: '',
+    fullName: '',
     birthDate: '',
     position: '',
     admissionDate: '',
@@ -41,6 +42,7 @@ const PlayerForm = ({ player, onSubmit, onCancel }) => {
     if (player) {
       setFormData({
         name: player.name || '',
+        fullName: player.fullName || '',
         birthDate: player.birthDate || '',
         position: player.position || '',
         admissionDate: player.admissionDate || '',
@@ -180,16 +182,33 @@ const PlayerForm = ({ player, onSubmit, onCancel }) => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* Nome */}
+            {/* Nome da Foto */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Nome *
+                Nome da Foto *
               </label>
               <input
                 type="text"
                 name="name"
                 value={formData.name}
                 onChange={handleInputChange}
+                placeholder="Nome que aparecerá na foto"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E5050F] focus:border-transparent"
+                required
+              />
+            </div>
+
+            {/* Nome Completo */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Nome Completo *
+              </label>
+              <input
+                type="text"
+                name="fullName"
+                value={formData.fullName}
+                onChange={handleInputChange}
+                placeholder="Nome completo do atleta"
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E5050F] focus:border-transparent"
                 required
               />

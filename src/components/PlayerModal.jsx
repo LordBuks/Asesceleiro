@@ -95,7 +95,7 @@ const PlayerModal = ({ player, isOpen, onClose }) => { // Define o componente fu
                   <label className="block text-sm font-medium text-gray-700 mb-1"> {/* Rótulo do campo. */}
                     Nome Completo {/* Texto do rótulo. */}
                   </label>
-                  <p className="text-gray-900 font-medium">{player.name}</p> {/* Valor do campo (nome completo do jogador). */}
+                  <p className="text-gray-900 font-medium">{player.fullName || player.name}</p> {/* Valor do campo (nome completo do jogador ou nome da foto como fallback). */}
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4"> {/* Div para agrupar campos em um grid responsivo. */}

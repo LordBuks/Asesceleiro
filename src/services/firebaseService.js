@@ -150,7 +150,11 @@ export const utils = {
     const errors = [];
     
     if (!data.name || data.name.trim().length < 2) {
-      errors.push('Nome deve ter pelo menos 2 caracteres');
+      errors.push('Nome da foto deve ter pelo menos 2 caracteres');
+    }
+    
+    if (!data.fullName || data.fullName.trim().length < 2) {
+      errors.push('Nome completo deve ter pelo menos 2 caracteres');
     }
     
     if (!data.category) {
