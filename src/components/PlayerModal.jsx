@@ -23,7 +23,7 @@ const PlayerModal = ({ player, isOpen, onClose }) => { // Define o componente fu
             <div className="absolute inset-0 bg-gradient-to-r from-white via-[#E5050F] to-[#E5050F]"></div> {/* Div que cria o efeito de gradiente de branco para vermelho, cobrindo toda a seção. */} 
             
             {/* Sobrenomes BEM GRANDES com transparência no fundo */} {/* Comentário para indicar a seção dos sobrenomes grandes. */} 
-            <div className="absolute inset-0 flex flex-col items-center justify-center pl-33"> {/* Div que centraliza os sobrenomes, com posicionamento absoluto e padding-left para mover para a direita. */} 
+            <div className="absolute inset-0 flex flex-col items-center justify-center pl-30"> {/* Div que centraliza os sobrenomes, com posicionamento absoluto e padding-left para mover para a direita. */} 
               {player.name.split(" ").slice(1).map((namePart, index) => ( // Mapeia as partes do nome do jogador (exceto o primeiro) para criar um h1 para cada. 
                 <h1 // Elemento h1 para exibir cada parte do sobrenome. 
                   key={index} // Chave única para cada item na lista, importante para o React. 
@@ -67,8 +67,8 @@ const PlayerModal = ({ player, isOpen, onClose }) => { // Define o componente fu
                 )}
               </div>
               
-              {/* Primeiro nome - Centralizado abaixo da foto em mobile, no meio em desktop */} {/* Comentário para indicar a seção do primeiro nome. */} 
-              <div className="w-full flex justify-center items-center py-6 md:py-0 md:absolute md:top-1/2 md:left-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 z-10 md:pl-20"> {/* Div para o primeiro nome, com posicionamento responsivo e padding-left para mover para a direita. */} 
+              {/* Primeiro nome - Posicionado sobre o segundo nome, alinhado à esquerda e acima */} {/* Comentário para indicar a seção do primeiro nome. */} 
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 md:top-1/4 md:left-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 z-10 md:pl-20"> {/* Div para o primeiro nome, com posicionamento responsivo. Em mobile, centralizado. Em desktop, posicionado mais para cima e à esquerda, com padding-left para alinhar com o sobrenome. */} 
                 <p className="text-white text-4xl md:text-5xl font-bold tracking-wider" // Parágrafo para exibir o primeiro nome, com estilos de texto e espaçamento. 
                    style={{ // Estilos inline para opacidade, sombra do texto e espaçamento entre letras. 
                      opacity: 0.9, // Opacidade do texto. 
