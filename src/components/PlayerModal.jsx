@@ -23,7 +23,7 @@ const PlayerModal = ({ player, isOpen, onClose }) => { // Define o componente fu
             <div className="absolute inset-0 bg-gradient-to-r from-white via-[#E5050F] to-[#E5050F]"></div> {/* Div que cria o efeito de gradiente de branco para vermelho, cobrindo toda a seção. */}
             
             {/* Sobrenomes BEM GRANDES com transparência no fundo */} {/* Comentário para indicar a seção dos sobrenomes grandes. */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center pl-30"> {/* Div que centraliza os sobrenomes, com posicionamento absoluto e padding-left para mover para a direita. */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center pl-40"> {/* Div que centraliza os sobrenomes, com posicionamento absoluto e padding-left para mover para a direita. */}
               {player.name.split(" ").slice(1).map((namePart, index) => ( // Mapeia as partes do nome do jogador (exceto o primeiro) para criar um h1 para cada.
                 <h1 // Elemento h1 para exibir cada parte do sobrenome.
                   key={index} // Chave única para cada item na lista, importante para o React.
@@ -68,7 +68,7 @@ const PlayerModal = ({ player, isOpen, onClose }) => { // Define o componente fu
               </div>
               
               {/* Primeiro nome - Posicionado sobre o segundo nome, alinhado à esquerda e um pouco mais para baixo */} {/* Comentário para indicar a seção do primeiro nome. */}
-              <div className="absolute z-10" style={{ top: 'calc(50% - 71px)', left: 'calc(50% - 165px)' }}> {/* Div para o primeiro nome, com posicionamento absoluto. Ajustado para ficar mais à esquerda e um pouco mais para baixo em relação ao centro, com valores mais precisos. */}
+              <div className="absolute z-10" style={{ top: 'calc(50% - 73px)', left: 'calc(50% - 165px)' }}> {/* Div para o primeiro nome, com posicionamento absoluto. Ajustado para ficar mais à esquerda e um pouco mais para baixo em relação ao centro, com valores mais precisos. */}
                 <p className="text-white text-4xl md:text-5xl font-bold tracking-wider" // Parágrafo para exibir o primeiro nome, com estilos de texto e espaçamento.
                    style={{ // Estilos inline para opacidade, sombra do texto e espaçamento entre letras.
                      opacity: 0.9, // Opacidade do texto.
