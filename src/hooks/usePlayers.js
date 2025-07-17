@@ -1,36 +1,33 @@
 import { useState, useEffect } from 'react';
 import { playersService } from '../services/firebaseService';
 import { mockPlayers } from '../data/mockPlayers';
+import { useAuth } from '../contexts/AuthContext';
 
 export const usePlayers = () => {
   const [players, setPlayers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [useFirebase, setUseFirebase] = useState(true);
+  const { currentUser } = useAuth();
 
   useEffect(() => {
-    loadPlayers();
-  }, []);
+    if (currentUser) {
+      loadPlayers();
+    }
+  }, [currentUser]);
 
   const loadPlayers = async () => {
     try {
       setLoading(true);
       setError(null);
 
-      if (useFirebase) {
-        // Tentar carregar do Firebase
-        try {
-          const firebasePlayers = await playersService.getAll();
-          setPlayers(firebasePlayers);
-        } catch (firebaseError) {
-          console.warn('Erro ao carregar do Firebase, usando dados mock:', firebaseError);
-          // Fallback para dados mock se Firebase falhar
-          setPlayers(mockPlayers);
-          setUseFirebase(false);
-        }
-      } else {
-        // Usar dados mock
-        setPlayers(mockPlayers);
+      // Tentar carregar do Firebase
+      try {
+        const firebasePlayers = await playersService.getAll();
+        setPlayers(firebasePlayers);
+      } catch (firebaseError) {
+        console.error("Erro ao carregar do Firebase:", firebaseError);
+        setError("Erro ao carregar jogadores do Firebase. Verifique suas permissões.");
+        setPlayers([]); // Garante que nenhum dado mock seja exibido
       }
     } catch (error) {
       console.error('Erro ao carregar jogadores:', error);
@@ -54,7 +51,6 @@ export const usePlayers = () => {
     players,
     loading,
     error,
-    useFirebase,
     getPlayersByCategory,
     refreshPlayers
   };

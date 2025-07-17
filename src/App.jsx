@@ -81,37 +81,42 @@ function AppContent() {
     return <AdminPanel onBackToPublic={handleBackToPublic} />;
   }
 
-  // Se o usuário estiver logado e showAdminPanel for falso, exibe o conteúdo principal do site
-  return (
-    <div className="min-h-screen bg-gray-50">
-      <Header onAdminClick={handleAdminClick} />
-      <CategoryMenu 
-        selectedCategory={selectedCategory}
-        onCategoryChange={setSelectedCategory}
-      />
-      
-      {error && (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded">
-            <p>⚠️ Usando dados de demonstração. {error}</p>
-          </div>
-        </div>
-      )}
-      
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <PlayerGrid 
-          players={filteredPlayers}
-          onPlayerClick={handlePlayerClick}
+  // Se o usuário estiver logado e showWelcomeBack for falso, exibe o conteúdo principal do site
+  if (currentUser && !showWelcomeBack) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <Header onAdminClick={handleAdminClick} />
+        <CategoryMenu 
+          selectedCategory={selectedCategory}
+          onCategoryChange={setSelectedCategory}
         />
-      </main>
+        
+        {error && (
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div className="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded">
+              <p>⚠️ Usando dados de demonstração. {error}</p>
+            </div>
+          </div>
+        )}
+        
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <PlayerGrid 
+            players={filteredPlayers}
+            onPlayerClick={handlePlayerClick}
+          />
+        </main>
 
-      <PlayerModal 
-        player={selectedPlayer}
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-      />
-    </div>
-  );
+        <PlayerModal 
+          player={selectedPlayer}
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+        />
+      </div>
+    );
+  }
+
+  // Fallback para o conteúdo principal se nenhuma das condições acima for atendida (não deve acontecer com a lógica correta)
+  return null;
 }
 
 function App() {
@@ -123,5 +128,3 @@ function App() {
 }
 
 export default App;
-
-
