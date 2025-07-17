@@ -16,6 +16,7 @@ const Footer = () => {
           <p className="footer-title">
             <strong>Departamento de Serviço Social Categorias de Base</strong>
           </p>
+          <p className="footer-department"></p>
         </div>
       </div>
     </div>
