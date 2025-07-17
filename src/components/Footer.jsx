@@ -14,7 +14,8 @@ const Footer = () => {
         </div>
         <div className="footer-text">
           <p className="footer-title">
-            <strong>Departamento de Serviço Social Categorias de Base</strong>
+            <p>Sistema de Gestão de Atletas Alojados</p>
+            <p>Departamento de Serviço Social</p>
           </p>
           <p className="footer-department"></p>
         </div>
