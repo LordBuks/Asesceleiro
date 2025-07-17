@@ -77,8 +77,6 @@ const LoggedInWelcome = ({ user, onContinue, onAdminClick }) => {
           <Footer />
 
           <div className="text-sm text-gray-500">
-            <p>Sport Club Internacional - Celeiro de Ases</p>
-            <p>Sistema de Gestão de Atletas Alojados</p>
           </div>
         </div>
       </main>
