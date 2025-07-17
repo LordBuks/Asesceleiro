@@ -33,13 +33,16 @@ const Header = ({ onAdminClick }) => {
             <div className="flex items-center space-x-4">
               {currentUser ? (
                 <>
-                  <button
-                    onClick={onAdminClick}
-                    className="flex items-center space-x-2 px-4 py-2 bg-[#E5050F] text-white rounded-lg hover:bg-[#C20C18] transition-colors"
-                  >
-                    <Settings size={20} />
-                    <span>Painel Admin</span>
-                  </button>
+                  {/* Só mostra o botão Painel Admin para o administrador */}
+                  {currentUser.email === 'gabiru@inter.com' && (
+                    <button
+                      onClick={onAdminClick}
+                      className="flex items-center space-x-2 px-4 py-2 bg-[#E5050F] text-white rounded-lg hover:bg-[#C20C18] transition-colors"
+                    >
+                      <Settings size={20} />
+                      <span>Painel Admin</span>
+                    </button>
+                  )}
                   <button
                     onClick={handleLogout}
                     className="flex items-center space-x-2 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"

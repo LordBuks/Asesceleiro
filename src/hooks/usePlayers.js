@@ -1,16 +1,25 @@
 import { useState, useEffect } from 'react';
 import { playersService } from '../services/firebaseService';
 import { mockPlayers } from '../data/mockPlayers';
+import { useAuth } from '../contexts/AuthContext';
 
 export const usePlayers = () => {
   const [players, setPlayers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [useFirebase, setUseFirebase] = useState(true);
+  const { currentUser } = useAuth();
 
   useEffect(() => {
-    loadPlayers();
-  }, []);
+    if (currentUser) {
+      loadPlayers();
+    } else {
+      // Se não houver usuário logado, use dados mock e pare de carregar
+      setPlayers(mockPlayers);
+      setLoading(false);
+      setUseFirebase(false);
+    }
+  }, [currentUser]);
 
   const loadPlayers = async () => {
     try {
