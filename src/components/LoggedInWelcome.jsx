@@ -74,6 +74,7 @@ const LoggedInWelcome = ({ user, onContinue, onAdminClick }) => {
               )}
             </div>
           </div>
+        </div>
           <Footer />
 
           <div className="text-sm text-gray-500">
