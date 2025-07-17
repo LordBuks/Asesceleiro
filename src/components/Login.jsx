@@ -35,7 +35,7 @@ const Login = () => {
             className="logo"
           />
         </div>
-        <h1 className="system-title">Sistema de Autorizações Digitais</h1>
+        <h1 className="system-title">Alojamento CTB </h1>
       </div>
 
       <div className="login-form-container">
@@ -87,7 +87,7 @@ const Login = () => {
       </div>
 
       <footer className="login-footer">
-        <p>© 2025 VampTech Ltda. Todos os direitos reservados.</p>
+        <p>© 2025 TechVamp Ltda. Todos os direitos reservados.</p>
       </footer>
     </div>
   );
