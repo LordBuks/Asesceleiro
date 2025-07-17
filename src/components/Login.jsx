@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
+import Footer from './Footer';
 import './Login.css';
 
 const Login = () => {
@@ -30,12 +31,12 @@ const Login = () => {
       <div className="login-header">
         <div className="logo-container">
           <img 
-            src="/assets/inter-logo.png" 
+            src="/inter-logo.png" 
             alt="SC Internacional" 
             className="logo"
           />
         </div>
-        <h1 className="system-title">Alojamento CTB </h1>
+        <h1 className="system-title">Alojamento CTB</h1>
       </div>
 
       <div className="login-form-container">
@@ -84,6 +85,11 @@ const Login = () => {
             </button>
           </form>
         </div>
+      </div>
+
+      {/* Footer como bloco separado */}
+      <div className="footer-block-container">
+        <Footer />
       </div>
 
       <footer className="login-footer">
