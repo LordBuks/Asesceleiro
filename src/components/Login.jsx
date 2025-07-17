@@ -84,12 +84,10 @@ const Login = () => {
               {loading ? 'Entrando...' : 'Entrar'}
             </button>
           </form>
+          
+          {/* Footer integrado no bloco de login */}
+          <Footer />
         </div>
-      </div>
-
-      {/* Footer como bloco separado */}
-      <div className="footer-block-container">
-        <Footer />
       </div>
 
       <footer className="login-footer">

@@ -1,9 +1,11 @@
 /* Footer.css */
 .footer-container {
-  background: transparent;
-  border: none;
-  padding: 0;
+  background: #f8f9fa;
+  border-top: 1px solid #e0e0e0;
+  padding: 20px;
   margin: 0;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
 }
 
 .footer-content {
