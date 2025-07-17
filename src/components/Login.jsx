@@ -31,7 +31,7 @@ const Login = () => {
       <div className="login-header">
         <div className="logo-container">
           <img 
-            src="/inter-logo.png" 
+            src="https://i.imgur.com/aVevWWG.png" 
             alt="SC Internacional" 
             className="logo"
           />
