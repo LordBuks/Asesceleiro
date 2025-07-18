@@ -84,7 +84,7 @@ function AppContent() {
   // Se o usuário estiver logado e showWelcomeBack for falso, exibe o conteúdo principal do site
   if (currentUser && !showWelcomeBack) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gray-50 overflow-auto">
         <Header onAdminClick={handleAdminClick} />
         <CategoryMenu 
           selectedCategory={selectedCategory}
@@ -99,7 +99,7 @@ function AppContent() {
           </div>
         )}
         
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 transform scale-[0.67] origin-top-left w-[150%] h-[150%] overflow-visible">
           <PlayerGrid 
             players={filteredPlayers}
             onPlayerClick={handlePlayerClick}
@@ -128,3 +128,4 @@ function App() {
 }
 
 export default App;
+
