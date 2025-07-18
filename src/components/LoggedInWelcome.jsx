@@ -6,7 +6,7 @@ const LoggedInWelcome = ({ user, onContinue, onAdminClick, onLogout }) => {
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-between">
-      <main className="flex-grow flex items-center justify-center px-4 sm:px-6 lg:px-8 py-2">
+      <main className="flex-grow flex items-center justify-center px-4 sm:px-6 lg:px-8 py-4">
         <div className="w-full max-w-4xl text-center">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
             Bem-vindo de volta!
