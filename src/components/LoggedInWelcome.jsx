@@ -17,7 +17,7 @@ const LoggedInWelcome = ({ user, onContinue, onAdminClick, onLogout }) => {
           
           <div className="bg-white rounded-lg shadow-lg p-5 mb-3">
             <h2 className="text-lg font-semibold text-[#E5050F] mb-3">
-              Sistema de Gestão de Atletas Alojados - Celeiro de Ases
+              Sistema de Gestão de Atletas Alojados
             </h2>
             
             <p className="text-sm text-gray-700 mb-5">
