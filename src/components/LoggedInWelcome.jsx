@@ -1,12 +1,12 @@
-import { Users, Settings, Shield } from 'lucide-react';
+import { Users, Settings, Shield, LogOut } from 'lucide-react';
 import Footer from './Footer';
 
-const LoggedInWelcome = ({ user, onContinue, onAdminClick }) => {
+const LoggedInWelcome = ({ user, onContinue, onAdminClick, onLogout }) => {
   const isAdminUser = user && user.email === 'gabiru@inter.com';
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-between">
-      <main className="flex-grow flex items-center justify-center px-4 sm:px-6 lg:px-8 py-2">
+      <main className="flex-grow flex items-center justify-center px-4 sm:px-6 lg:px-8 py-8">
         <div className="w-full max-w-4xl text-center">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
             Bem-vindo de volta!
@@ -71,6 +71,14 @@ const LoggedInWelcome = ({ user, onContinue, onAdminClick }) => {
                   <span>Painel Admin</span>
                 </button>
               )}
+
+              <button
+                onClick={onLogout}
+                className="inline-flex items-center justify-center space-x-2 px-6 py-2 border-2 border-gray-400 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-md font-semibold"
+              >
+                <LogOut size={20} />
+                <span>Voltar para o Login</span>
+              </button>
             </div>
           </div>
         </div>
