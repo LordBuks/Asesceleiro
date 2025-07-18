@@ -19,44 +19,44 @@ const Header = ({ onAdminClick }) => {
   return (
     <>
       <header className="bg-white shadow-sm border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center space-x-4">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-14">
+            <div className="flex items-center space-x-3">
               <img 
                 src={interLogo} 
                 alt="Sport Club Internacional" 
-                className="h-12 w-12"
+                className="h-10 w-10"
               />
-              <h1 className="text-2xl font-bold text-[#E5050F]">CELEIRO</h1>
+              <h1 className="text-xl font-bold text-[#E5050F] tracking-wide">CELEIRO</h1>
             </div>
             
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2">
               {currentUser ? (
                 <>
                   {/* Só mostra o botão Painel Admin para o administrador */}
                   {currentUser.email === 'gabiru@inter.com' && (
                     <button
                       onClick={onAdminClick}
-                      className="flex items-center space-x-2 px-4 py-2 bg-[#E5050F] text-white rounded-lg hover:bg-[#C20C18] transition-colors"
+                      className="flex items-center space-x-1.5 px-3 py-1.5 bg-[#E5050F] text-white rounded-md hover:bg-[#C20C18] transition-all duration-200 ease-in-out transform hover:scale-105 text-sm font-medium shadow-sm hover:shadow-md"
                     >
-                      <Settings size={20} />
+                      <Settings size={16} />
                       <span>Painel Admin</span>
                     </button>
                   )}
                   <button
                     onClick={handleLogout}
-                    className="flex items-center space-x-2 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                    className="flex items-center space-x-1.5 px-3 py-1.5 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 ease-in-out transform hover:scale-105 text-sm font-medium shadow-sm hover:shadow-md"
                   >
-                    <LogOut size={20} />
+                    <LogOut size={16} />
                     <span>Sair</span>
                   </button>
                 </>
               ) : (
                 <button
                   onClick={() => setShowLoginForm(true)}
-                  className="flex items-center space-x-2 px-4 py-2 bg-[#E5050F] text-white rounded-lg hover:bg-[#C20C18] transition-colors"
+                  className="flex items-center space-x-1.5 px-3 py-1.5 bg-[#E5050F] text-white rounded-md hover:bg-[#C20C18] transition-all duration-200 ease-in-out transform hover:scale-105 text-sm font-medium shadow-sm hover:shadow-md"
                 >
-                  <LogIn size={20} />
+                  <LogIn size={16} />
                   <span>Admin</span>
                 </button>
               )}
