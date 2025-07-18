@@ -18,7 +18,7 @@ function AppContent() {
   const [showAdminPanel, setShowAdminPanel] = useState(false);
   const [showWelcomeBack, setShowWelcomeBack] = useState(true); // Novo estado para controlar a tela de boas-vindas
 
-  const { currentUser, loading: authLoading } = useAuth();
+  const { currentUser, loading: authLoading, logout } = useAuth(); // Adicionado logout
 
   const { players, loading: playersLoading, error, getPlayersByCategory } = usePlayers();
 
@@ -48,6 +48,17 @@ function AppContent() {
     setShowWelcomeBack(false); // Esconde a tela de boas-vindas e mostra o conteúdo principal
   };
 
+  const handleLogout = async () => {
+    try {
+      await logout();
+      // O onAuthStateChanged em AuthContext.jsx irá lidar com a atualização do currentUser
+      // e o AppContent irá renderizar o componente Login automaticamente.
+    } catch (error) {
+      console.error("Erro ao fazer logout:", error);
+      // Opcional: mostrar uma mensagem de erro para o usuário
+    }
+  };
+
   // Se o usuário não estiver logado e a autenticação não estiver carregando, exibe a tela de boas-vindas ou login
   if (!currentUser && !authLoading) {
     return <Login />;
@@ -72,6 +83,7 @@ function AppContent() {
         user={currentUser} 
         onContinue={handleContinueToMain} 
         onAdminClick={handleAdminClick} 
+        onLogout={handleLogout} // Passando a função de logout
       />
     );
   }
@@ -99,7 +111,7 @@ function AppContent() {
           </div>
         )}
         
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 transform scale-[0.55] origin-top-left w-[150%] h-[150%] overflow-visible">
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 transform scale-[0.67] origin-top-left w-[150%] h-[150%] overflow-visible">
           <PlayerGrid 
             players={filteredPlayers}
             onPlayerClick={handlePlayerClick}
@@ -128,4 +140,5 @@ function App() {
 }
 
 export default App;
+
 
