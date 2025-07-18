@@ -99,7 +99,7 @@ function AppContent() {
           </div>
         )}
         
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 transform scale-[0.67] origin-top-left w-[150%] h-[150%] overflow-visible">
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 transform scale-[0.60] origin-top-left w-[150%] h-[150%] overflow-visible">
           <PlayerGrid 
             players={filteredPlayers}
             onPlayerClick={handlePlayerClick}
